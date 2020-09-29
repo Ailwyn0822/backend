@@ -15,7 +15,7 @@
 
 Route::get('/', 'x@index');
 Route::get('/news', 'x@news');
-Route::get('/news_info', 'x@news_info');
+Route::get('/news_info/{news_id}', 'x@news_info');
 Route::get('/contact_us', 'x@contact_us');
 
 

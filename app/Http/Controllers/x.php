@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class x extends Controller
 {
 
     public function index(){
-        return view('front/index');
+        $news_list = DB::table('news')->take(3)->orderBy('id','desc')->get();
+        return view('front/index', compact("news_list"));
+
 
     }
     public function news(){
-        return view('front/news');
+        $news_list = DB::table('news')->orderBy('id','desc')->paginate(6);
+        return view('front/news', compact("news_list"));
 
     }
 
-    public function news_info(){
-        return view('front/news_info');
+    public function news_info($news_id){
+        $news = DB::table('news')->where('id', '=',$news_id)->first();
+        return view('front/news_info',compact('news'));
 
     }
 
@@ -27,7 +32,7 @@ class x extends Controller
     }
 
 
-    
+
 
 
 }
