@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,6 +44,19 @@ class x extends Controller
 
     }
 
+    public function send(Request $request){
+
+        // DB::table('place')->insert(
+        //     ['email' => $request->email,
+        //     'place' => $request->place,
+        //     'file' => "",
+        //     'place_text' => $request->place_text,
+        //     'place_name' => $request->place_name
+        //     ]
+        // );
+        place::create($request->all());
+        return '好棒喔';
+    }
 
 
 

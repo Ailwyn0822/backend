@@ -19,6 +19,7 @@ Route::get('/news_info/{news_id}', 'x@news_info');
 Route::get('/contact_us', 'x@contact_us');
 Route::get('/BikiniBottom', 'x@BikiniBottom');
 Route::get('/BikiniBottom_info/{BikiniBottom_id}', 'x@BikiniBottom_info');
+Route::post('/send','x@send');
 
 
 Auth::routes();
