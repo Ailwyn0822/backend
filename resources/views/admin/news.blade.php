@@ -2,7 +2,7 @@
 
 @section('css')
  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
- 
+
 @endsection
 
 @section('content')
@@ -45,5 +45,10 @@
 @section('js')
  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+ <script>
+     $(document).ready(function() {
+    $('#example').DataTable();
+} );
+ </script>
 @endsection
 
