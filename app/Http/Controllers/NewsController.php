@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\news;
+use App\place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +30,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/news_create');
     }
 
     /**
@@ -39,7 +41,8 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        news::create($request->all());
+        return '新增成功喔';
     }
 
     /**
@@ -59,9 +62,10 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($news_id)
     {
-        //
+        $news=DB::table('news')->where('id', '=',$news_id)->first();
+        return view('admin/news_edit',compact('news'));
     }
 
     /**
@@ -71,9 +75,13 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $news_id)
     {
-        //
+        news::where('id', '=',$news_id)->update(['title' => $request->title]);
+        news::where('id', '=',$news_id)->update(['sub_title' => $request->sub_title]);
+        news::where('id', '=',$news_id)->update(['content' => $request->content]);
+        news::where('id', '=',$news_id)->update(['img_url' => $request->img_url]);
+        return '更新成功喔';
     }
 
     /**
@@ -82,8 +90,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $news_id)
     {
-        //
+        news::where('id', '=',$news_id)->delete();
+        return'刪除成功';
     }
 }

@@ -34,8 +34,8 @@
             <td>{{$news->content}}</td>
             <td><img width="100" src="{{$news->img_url}}" alt=""></td>
             <td>
-                <a href="" class="btn btn-success">編輯</a>
-                <a href="" class="btn btn-danger">刪除</a>
+                <a href="/admin/news/edit/{{$news->id}}" class="btn btn-success">編輯</a>
+                <a href="/admin/news/destroy/{{$news->id}}" class="btn btn-danger">刪除</a>
 
             </td>
         </tr>
