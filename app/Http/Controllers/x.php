@@ -45,7 +45,6 @@ class x extends Controller
     }
 
     public function send(Request $request){
-
         // DB::table('place')->insert(
         //     ['email' => $request->email,
         //     'place' => $request->place,
