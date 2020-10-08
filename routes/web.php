@@ -37,3 +37,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('news/destroy/{news_id}', 'NewsController@destroy');
 
 });
+
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+
+    Route::get('bb', 'bbController@index');
+    Route::get('bb/create', 'bbController@create');
+    Route::post('bb/store', 'bbController@store');
+    Route::get('bb/edit/{bb_id}', 'bbController@edit');
+    Route::post('bb/update/{bb_id}', 'bbController@update');
+    Route::get('bb/destroy/{bb_id}', 'bbController@destroy');
+
+});

@@ -37,8 +37,8 @@
                             <a href="/admin/news">最新消息</a>
                         </li>
 
-                        <li class="ml-3">
-                            <a href="/admin/news/create">新增消息</a>
+                        <li>
+                            <a href="/admin/bb" class="ml-3">管理比奇堡</a>
                         </li>
                     </ul>
 

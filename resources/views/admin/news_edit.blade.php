@@ -6,7 +6,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">首頁</a></li>
+          <li class="breadcrumb-item"><a href="#">後臺</a></li>
           <li class="breadcrumb-item"><a href="/admin/news">最新消息</a></li>
           <li class="breadcrumb-item"><a href="/admin/news/create">編輯消息</a></li>
         </ol>
@@ -29,6 +29,12 @@
             <label for="exampleInput">圖片網址</label>
             <input type="text" class="form-control" id="exampleInput"  name="img_url" value="{{$news->img_url}}">
           </div>
+          <div class="form-group">
+            <label for="file">上傳檔案</label>
+            <input type="file" class="form-control-file" id="file" name="file">
+          </div>
+          <p>現有照片</p>
+          <img src="{{$news->file}}" width="200" alt=""><br>
         <button type="submit" class="btn btn-primary">送出</button>
     </form>
 </div>
