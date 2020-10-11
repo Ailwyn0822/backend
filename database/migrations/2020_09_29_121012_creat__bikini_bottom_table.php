@@ -19,6 +19,7 @@ class CreatBikiniBottomTable extends Migration
             $table->string('house');
             $table->mediumText('text');
             $table->string('img_url');
+            $table->string('collection');
             $table->timestamps();
         });
     }
