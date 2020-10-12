@@ -39,7 +39,6 @@
                     <a class="btn btn-success" href="/admin/bb/edit/{{$bb->id}}">裝潢</a>
                     {{-- <a class="btn btn-danger" href="/admin/bb/destroy/{{$bb->id}}">搬家</a> --}}
                     <button data-bbid="{{$bb->id}}" class="btn btn-lg btn btn-danger btn-del">搬家</button>
-
                 </td>
             </tr>
             @endforeach

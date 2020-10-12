@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\bb;
+use App\bbtype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -16,8 +17,10 @@ class bbController extends Controller
      */
     public function index()
     {
-        $bb_list=DB::table('bikinibottom')->get();
-        return view('admin/bb',compact('bb_list'));
+        // $bb_list=DB::table('bikinibottom')->get();
+        $bbbb=bb::with('bb_type')->find(9);
+        dd($bbbb);
+        // return view('admin/bb',compact('bb_list'));
 
     }
 
