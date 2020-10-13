@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\bb;
+use App\bbtype;
 use App\place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,10 +39,18 @@ class x extends Controller
         return view('front/BikiniBottom',compact('BikiniBottoms'));
 
     }
+
+    public function BikiniBottomType(){
+        $bbbb=bbtype::with('bb')->get();
+        // dd($bbbb);
+        return view('front/BikiniBottomType',compact('bbbb'));
+
+    }
+
     public function BikiniBottom_info($BikiniBottom_id){
         $BikiniBottom=DB::table('BikiniBottom')->where('id',$BikiniBottom_id)->first();
-
-        return view('front/BikiniBottom_info',compact('BikiniBottom'));
+        $bbbb=bb::with('bb_type')->where('id',$BikiniBottom_id)->first();
+        return view('front/BikiniBottom_info',compact('BikiniBottom','bbbb'));
 
     }
 

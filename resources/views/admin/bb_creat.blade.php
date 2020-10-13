@@ -15,6 +15,15 @@
 
       <form method="POST" action="/admin/bb/store" enctype="multipart/form-data">
         @csrf
+
+            <div class="form-group">
+            <label for="type_id">您是什麼動物?</label>
+            <select name="type_id" id="" class="form-control">
+                @foreach ($bbbb as $bb)
+                <option value="{{$bb->id}}">{{$bb->type_name}}</option>
+                @endforeach
+            </select>
+          </div>
           <div class="form-group">
             <label for="name">您的大名是?</label>
             <input type="text" class="form-control" id="name"  name="name">

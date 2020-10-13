@@ -12,6 +12,6 @@ class bbtype extends Model
     ];
 
     public function bb(){
-        return $this->hasMany('App\bb');
+        return $this->hasMany('App\bb','type_id');
     }
 }

@@ -17,10 +17,10 @@ class bbController extends Controller
      */
     public function index()
     {
-        // $bb_list=DB::table('bikinibottom')->get();
-        $bbbb=bb::with('bb_type')->find(9);
-        dd($bbbb);
-        // return view('admin/bb',compact('bb_list'));
+        $bb_list=DB::table('bikinibottom')->get();
+        // $bbbb=bb::with('bb_type')->find(9);
+        // dd($bbbb);
+        return view('admin/bb',compact('bb_list'));
 
     }
 
@@ -31,7 +31,8 @@ class bbController extends Controller
      */
     public function create()
     {
-        return view('admin/bb_creat');
+        $bbbb=bbtype::with('bb')->get();
+        return view('admin/bb_creat',compact('bbbb'));
 
     }
 
