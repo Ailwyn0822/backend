@@ -48,4 +48,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('bb/update/{bb_id}', 'bbController@update');
     Route::get('bb/destroy/{bb_id}', 'bbController@destroy');
 
+
+    Route::get('bbtype', 'bbtypeController@index');
+    Route::get('bbtype/create', 'bbtypeController@create');
+    Route::post('bbtype/store', 'bbtypeController@store');
+    Route::get('bbtype/edit/{bbtype_id}', 'bbtypeController@edit');
+    Route::post('bbtype/update/{bbtype_id}', 'bbtypeController@update');
+    Route::get('bbtype/destroy/{bbtype_id}', 'bbtypeController@destroy');
+
 });

@@ -40,6 +40,10 @@
                         <li>
                             <a href="/admin/bb" class="ml-3">管理比奇堡</a>
                         </li>
+
+                        <li>
+                            <a href="/admin/bbtype" class="ml-3">管理比奇堡分類表</a>
+                        </li>
                     </ul>
 
 

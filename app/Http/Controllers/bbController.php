@@ -77,8 +77,13 @@ class bbController extends Controller
      */
     public function edit($bb_id)
     {
-        $bb=DB::table('bikinibottom')->where('id','=',$bb_id)->first();
-        return view('admin/bb_edit',compact('bb'));
+        // $bb=DB::table('bikinibottom')->where('id','=',$bb_id)->first();
+        // return view('admin/bb_edit',compact('bb'));
+
+        $bbbb=bb::with('bb_type')->find($bb_id);
+        $bbbbbb=bbtype::with('bb')->get();
+        return view('admin/bb_edit',compact('bbbb','bbbbbb'));
+
     }
 
     /**
