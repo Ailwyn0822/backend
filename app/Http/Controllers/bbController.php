@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\bb;
+use App\bbimg;
 use App\bbtype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,10 @@ class bbController extends Controller
      */
     public function index()
     {
-        $bb_list=DB::table('bikinibottom')->get();
+        $bb_list = DB::table('bikinibottom')->get();
         // $bbbb=bb::with('bb_type')->find(9);
         // dd($bbbb);
-        return view('admin/bb',compact('bb_list'));
-
+        return view('admin/bb', compact('bb_list'));
     }
 
     /**
@@ -31,9 +31,8 @@ class bbController extends Controller
      */
     public function create()
     {
-        $bbbb=bbtype::with('bb')->get();
-        return view('admin/bb_creat',compact('bbbb'));
-
+        $bbbb = bbtype::with('bb')->get();
+        return view('admin/bb_creat', compact('bbbb'));
     }
 
     /**
@@ -47,13 +46,21 @@ class bbController extends Controller
 
         $requestData = $request->all();
 
-        if ($request->hasFile('collection')) {
-            $file = $request->file('collection');
-            $path = $this->fileUpload($file, 'bb');
-            $requestData['collection'] = $path;
+        $new_product =  bb::create($requestData);
+        $new_product_id = $new_product->id;
+        $files = $request->file('collections');
+        // dd($files);
+        if ($request->hasFile('collections')) {
+            foreach ($files as $file) {
+                //上傳圖片
+                $path = $this->fileUpload($file, 'bb');
+                //新增資料進DB
+                $product_img = new bbimg;
+                $product_img->sort = $new_product_id;
+                $product_img->img_url = $path;
+                $product_img->save();
+            }
         }
-
-        bb::create($requestData);
 
         return redirect('admin/bb');
     }
@@ -80,9 +87,10 @@ class bbController extends Controller
         // $bb=DB::table('bikinibottom')->where('id','=',$bb_id)->first();
         // return view('admin/bb_edit',compact('bb'));
 
-        $bbbb=bb::with('bb_type')->find($bb_id);
-        $bbbbbb=bbtype::with('bb')->get();
-        return view('admin/bb_edit',compact('bbbb','bbbbbb'));
+        $bbbb = bb::with('bb_type')->find($bb_id);
+        $bbbbbb = bbtype::with('bb')->get();
+        $bbb=bb::with('bbimg')->find($bb_id);
+        return view('admin/bb_edit', compact('bbbb', 'bbbbbb','bbb'));
 
     }
 
@@ -100,18 +108,17 @@ class bbController extends Controller
         $item = bb::find($bb_id);
         $requestData = $request->all();
 
-        if($request->hasFile('collection')) {
+        if ($request->hasFile('collections')) {
             $old_image = $item->collection;
-            $file = $request->file('collection');
-            $path = $this->fileUpload($file,'bb');
-            $requestData['collection'] = $path;
-            File::delete(public_path().$old_image);
+            $file = $request->file('collections');
+            $path = $this->fileUpload($file, 'bb');
+            $requestData['collections'] = $path;
+            File::delete(public_path() . $old_image);
         }
 
         $item->update($requestData);
 
         return redirect('admin/bb');
-
     }
 
     /**
@@ -124,7 +131,7 @@ class bbController extends Controller
     {
         $item = bb::find($bb_id);
         $old_image = $item->collection;
-        File::delete(public_path().$old_image);
+        File::delete(public_path() . $old_image);
         $item->delete();
         return redirect('admin/bb');
     }

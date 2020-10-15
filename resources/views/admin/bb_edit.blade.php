@@ -43,7 +43,14 @@
           </div>
           <div class="form-group">
             <label for="collection">上傳一個您的收藏品</label>
-            <input type="file" class="form-control-file" id="collection" name="collection" value="{{$bbbb->collection}}">
+            <input type="file" class="form-control-file" id="collection" name="collections[]" multiple>
+          </div>
+          <div>
+
+            @foreach ($bbb->bbimg as $item)
+            <img src="{{$item->img_url}}" width="200px" alt="">
+            @endforeach
+
           </div>
         <button type="submit" class="btn btn-primary">送出</button>
     </form>

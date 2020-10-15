@@ -56,4 +56,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('bbtype/update/{bbtype_id}', 'bbtypeController@update');
     Route::get('bbtype/destroy/{bbtype_id}', 'bbtypeController@destroy');
 
+    Route::post('/ajax_upload_img','AdminController@ajax_upload_img');
+    Route::post('/ajax_delete_img','AdminController@ajax_delete_img');
+
 });

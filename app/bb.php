@@ -14,4 +14,8 @@ class bb extends Model
     public function bb_type(){
         return $this->belongsTo('App\bbtype','type_id');
     }
+
+    public function bbimg(){
+        return $this->hasMany('App\bbimg','sort');
+    }
 }
