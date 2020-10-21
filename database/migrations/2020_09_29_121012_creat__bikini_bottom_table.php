@@ -18,6 +18,7 @@ class CreatBikiniBottomTable extends Migration
             $table->string('name');
             $table->string('house');
             $table->mediumText('text');
+            $table->string('price');
             $table->string('img_url');
             $table->string('collection');
             $table->string('type_id');
@@ -35,5 +36,5 @@ class CreatBikiniBottomTable extends Migration
         Schema::dropIfExists('BikiniBottom');
     }
 
-   
+
 }

@@ -8,7 +8,7 @@ class bb extends Model
 {
     protected $table='bikinibottom';
     protected $fillable = [
-        'name', 'house', 'text','img_url','collection','type_id'
+        'name', 'house', 'text','img_url','collection','type_id','price'
     ];
 
     public function bb_type(){

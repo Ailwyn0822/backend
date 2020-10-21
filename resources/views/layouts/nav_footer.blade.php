@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>全端班資料串接範例</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -49,21 +50,24 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-            <i class="icon-shopping-cart form-inline my-2 my-lg-0 text-white">
-                <span id="cartTotalQuantity">
-                    {{-- {{ \Cart::getTotalQuantity() }} 沒指定人的寫法 --}}
-                    {{-- 指定對象的PHP原生寫法 --}}
-                    @guest
-                        0
-                    @else
-                    <?php
-                        $userId = auth()->user()->id;
-                        $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
-                        echo $cartTotalQuantity;
-                    ?>
-                    @endguest
-                </span>
-            </i>
+            <a href="/cart"><div class="form-inline my-2 my-lg-0 text-white">
+                <i class="icon-shopping-cart">
+                    <span id="cartTotalQuantity">
+                        {{-- {{ \Cart::getTotalQuantity() }} 沒指定人的寫法 --}}
+                        {{-- 指定對象的PHP原生寫法 --}}
+                        @guest
+                            0
+                        @else
+                        <?php
+                            $userId = auth()->user()->id;
+                            $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
+                            echo $cartTotalQuantity;
+                        ?>
+                        @endguest
+                    </span>
+                </i>
+            </div></a>
+
         </div>
     </nav>
 

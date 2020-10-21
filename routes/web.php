@@ -22,7 +22,17 @@ Route::get('/BikiniBottomType', 'x@BikiniBottomType');
 Route::get('/BikiniBottom_info/{BikiniBottom_id}', 'x@BikiniBottom_info');
 Route::post('/send','x@send');
 
-Route::post('/addcart','CartController@addcart');
+//Cart test
+Route::post('/addcart','CartController@addcart');//新增
+Route::get('/cart','CartController@cart');//購物車畫面
+Route::post('/changeProductQty','CartController@changeProductQty');//修改
+Route::post('/deleteProductInCart','CartController@deleteProductInCart');//刪除
+Route::get('/checkout','CartController@checkout');//結帳
+
+
+
+
+
 Route::get('/getcontent','CartController@getcontent');
 Route::get('/totalcart','CartController@totalcart');
 

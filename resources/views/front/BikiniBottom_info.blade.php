@@ -37,7 +37,7 @@
 <script>
     $('.addcart').click(function () {
     var product_id = $(this).data('productid');
-    console.log(product_id);
+    // console.log(product_id);
 
     $.ajaxSetup({
         headers: {
@@ -54,7 +54,6 @@
         },
         success: function (res) {
             $('#cartTotalQuantity').text(res);
-            console.log('123')
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error(textStatus + " " + errorThrown);
