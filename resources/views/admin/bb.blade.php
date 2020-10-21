@@ -18,6 +18,7 @@
 
       <a class="btn btn-info mt-5 mb-5" href="/admin/bb/create">搬到比奇堡</a>
 
+
       <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -36,8 +37,13 @@
                 <td>{{$bb->house}}</td>
                 <td>{{$bb->text}}</td>
                 <td><img src="{{$bb->img_url}}" width="150px" alt=""></td>
-                <td><img src="{{$bb->collection}}" width="150px" alt=""></td>
+                <td>@foreach ($bab as $item)
+                    @if ($item->sort==$bb->id)
+                        <img width="50px" src="{{$item->img_url}}" alt="">
+                    @endif
+                @endforeach</td>
                 <td>
+
                     <a class="btn btn-success" href="/admin/bb/edit/{{$bb->id}}">裝潢</a>
                     {{-- <a class="btn btn-danger" href="/admin/bb/destroy/{{$bb->id}}">搬家</a> --}}
                     <button data-bbid="{{$bb->id}}" class="btn btn-lg btn btn-danger btn-del">搬家</button>

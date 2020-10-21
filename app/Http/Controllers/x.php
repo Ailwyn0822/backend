@@ -51,7 +51,7 @@ class x extends Controller
         $BikiniBottom=DB::table('BikiniBottom')->where('id',$BikiniBottom_id)->first();
         $bbbb=bb::with('bb_type')->where('id',$BikiniBottom_id)->first();
         return view('front/BikiniBottom_info',compact('BikiniBottom','bbbb'));
-
+        
     }
 
     public function send(Request $request){

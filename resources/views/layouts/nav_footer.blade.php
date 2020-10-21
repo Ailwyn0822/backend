@@ -49,6 +49,21 @@
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
+            <i class="icon-shopping-cart form-inline my-2 my-lg-0 text-white">
+                <span id="cartTotalQuantity">
+                    {{-- {{ \Cart::getTotalQuantity() }} 沒指定人的寫法 --}}
+                    {{-- 指定對象的PHP原生寫法 --}}
+                    @guest
+                        0
+                    @else
+                    <?php
+                        $userId = auth()->user()->id;
+                        $cartTotalQuantity = \Cart::session($userId)->getTotalQuantity();
+                        echo $cartTotalQuantity;
+                    ?>
+                    @endguest
+                </span>
+            </i>
         </div>
     </nav>
 

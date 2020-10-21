@@ -22,6 +22,11 @@ Route::get('/BikiniBottomType', 'x@BikiniBottomType');
 Route::get('/BikiniBottom_info/{BikiniBottom_id}', 'x@BikiniBottom_info');
 Route::post('/send','x@send');
 
+Route::post('/addcart','CartController@addcart');
+Route::get('/getcontent','CartController@getcontent');
+Route::get('/totalcart','CartController@totalcart');
+
+
 
 Auth::routes();
 
@@ -58,5 +63,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     Route::post('/ajax_upload_img','AdminController@ajax_upload_img');
     Route::post('/ajax_delete_img','AdminController@ajax_delete_img');
+    Route::post('/ajax_delete_product_imgs','AdminController@ajax_delete_product_imgs');
 
 });
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\bbimg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -42,4 +43,20 @@ class AdminController extends Controller
             File::delete(public_path() . $request->file_link);
         }
     }
+
+
+    public function ajax_delete_product_imgs(Request $request)
+{
+    dd('123');
+    $product_imgs_id = $request->product_imgs_id;
+
+    //多張圖片組的單一圖片刪除
+    $product_img = bbimg::where('id',$product_imgs_id)->first();
+    $old_product_img = $product_img->img;
+    if(file_exists(public_path().$old_product_img)){
+        File::delete(public_path().$old_product_img);
+    }
+    $product_img->delete();
+    echo '{"status":"success","message":"delete file success"}';
+}
 }

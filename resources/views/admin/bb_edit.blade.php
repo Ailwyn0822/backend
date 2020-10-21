@@ -1,5 +1,14 @@
 @extends('layouts/app')
 
+@section('css')
+<style>
+    #delbox{
+        width: 20px;
+        height: 20px;
+        background-color: rgb(24, 201, 201)
+    }
+</style>
+@endsection
 
 @section('content')
 <div class="container">
@@ -49,6 +58,7 @@
 
             @foreach ($bbb->bbimg as $item)
             <img src="{{$item->img_url}}" width="200px" alt="">
+            <a href="/admin/ajax_delete_product_imgs"><div id="delbox" ></div></a>
             @endforeach
 
           </div>
@@ -60,4 +70,31 @@
 
 
 </div>
+@endsection
+
+@section('js')
+<script>
+       $('#delbox').click(function () {
+
+var product_imgs_id = $(this).data('productimgid');
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$.ajax({
+    method: 'POST',
+    url: '/admin/ajax_delete_product_imgs',
+    data: {product_imgs_id: product_imgs_id},
+    success: function (res) {
+        $( `.product_imgs[data-productimgid='${product_imgs_id}']` ).remove();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        console.error(textStatus + " " + errorThrown);
+    }
+});
+});
+</script>
 @endsection
